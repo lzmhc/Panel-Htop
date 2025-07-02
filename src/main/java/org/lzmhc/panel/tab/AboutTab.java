@@ -21,7 +21,7 @@ public class AboutTab extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 try{
-                    Runtime.getRuntime().exec("xdg-open https://github.com/mhc2910463910/Panel-Htop");
+                    Runtime.getRuntime().exec("xdg-open https://github.com/lzmhc/Panel-Htop");
                 }catch (Exception err){
                     err.printStackTrace();
                 }
