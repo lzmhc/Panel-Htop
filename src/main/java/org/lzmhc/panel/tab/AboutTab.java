@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 
 public class AboutTab extends JPanel{
     public AboutTab(){
-        JLabel title = new JLabel(IconUtil.loadIcon(new ImageIcon("img/logo.png"),256));
+        JLabel title = new JLabel(IconUtil.loadIcon("img/logo.png",256));
         JLabel label=new JLabel("使用OSHI模块和FlatLaf开发的一款可视化系统信息面板。");
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel btnlabel=new JLabel(IconUtil.loadIcon(new ImageIcon("img/github-mark-white.png"),64),0);
+        JLabel btnlabel=new JLabel(IconUtil.loadIcon("img/github-mark-white.png",64),0);
         btnlabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -25,19 +25,6 @@ public class AboutTab extends JPanel{
                 }catch (Exception err){
                     err.printStackTrace();
                 }
-//                if(Desktop.isDesktopSupported()){
-//                    Desktop desktop=Desktop.getDesktop();
-//                    if(desktop.isSupported(Desktop.Action.BROWSE)){
-//                        try{
-//                            URI url=new URI("https://github.com/mhc2910463910/Panel-Htop");
-//                            desktop.browse(url);
-//                        }catch (Exception err){
-//                            err.printStackTrace();
-//                        }
-//                    }else{
-//                        System.out.println("不支持");
-//                    }
-//                }
             }
         });
         LayoutManager Layout=new GridLayout(3,1);

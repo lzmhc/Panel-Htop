@@ -4,6 +4,7 @@ import org.lzmhc.dto.GraphicsCardDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.GraphicsCardHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.hardware.GraphicsCard;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class GraphicsPanel extends JPanel implements GetPanel{
     protected GraphicsCardDto graphicsCardDto = InfoFactory.createDto(GraphicsCardDto.class);
     @Override
     public JPanel getPanel(){
-        ImageIcon icon = new ImageIcon("img/graphics.png");
+        ImageIcon icon = IconUtil.loadIcon("img/graphics.png", 54);
         PanelItem item = new PanelItem(" 显卡 ",new GridLayout(6,1), icon);
 
         CountDownLatch latch=new CountDownLatch(numThreads);

@@ -14,7 +14,7 @@ public class MemoryTab extends MemoryPanel implements templateTab {
     private ImageIcon icon;
     public MemoryTab(String path) {
         JPanel iconPanel=new JPanel();
-        this.icon = IconUtil.loadIcon(new ImageIcon(path), 128);
+        this.icon = IconUtil.loadIcon(path, 128);
         JLabel label = new JLabel( this.icon);
         iconPanel.add(label);
         iconPanel.setBackground(Color.decode("#155263"));

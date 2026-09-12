@@ -4,6 +4,7 @@ import org.lzmhc.dto.GlobalMemoryDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.MemoryHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.hardware.GlobalMemory;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class MemoryPanel extends JPanel implements GetPanel{
     protected GlobalMemoryDto globalMemoryDto = InfoFactory.createDto(GlobalMemoryDto.class);
     @Override
     public JPanel getPanel(){
-        ImageIcon icon = new ImageIcon("img/ram.png");
+        ImageIcon icon = IconUtil.loadIcon("img/ram.png", 54);
         PanelItem item = new PanelItem("内存",new GridLayout(6,1), icon);
         CountDownLatch latch=new CountDownLatch(numThreads);
         Thread thread = new MemoryHandle(globalMemoryDto, globalMemory, latch);

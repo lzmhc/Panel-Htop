@@ -4,6 +4,7 @@ import org.lzmhc.dto.PowerDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.PowHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.hardware.PowerSource;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class PowPanel extends JPanel implements GetPanel{
     protected java.util.List<PowerSource> powerSources = InfoDtoSingleton.getInfoDto().getHardware().getPowerSources();
     @Override
     public JPanel getPanel(){
-        ImageIcon icon=new ImageIcon("img/pow.png");
+        ImageIcon icon= IconUtil.loadIcon("img/pow.png", 54);
         PanelItem item = new PanelItem(" 电源 ",new GridLayout(6,1), icon);
         CountDownLatch latch=new CountDownLatch(numThreads);
         Thread thread = new PowHandle(powerDto,powerSources,latch);
@@ -27,7 +28,7 @@ public class PowPanel extends JPanel implements GetPanel{
         }catch (InterruptedException err){
             err.printStackTrace();
         }
-        item.addLabel("设备名称", powerDto.getName());
+        item.addLabel("设备名称", powerDto.getDeviceName());
         item.addLabel("电压", powerDto.getVoltage());
         item.addLabel("当前电量", String.format("%.1f",powerDto.getCurrentCapacity()/powerDto.getMaxCapacity()));
         item.addLabel("电池健康度", String.format("%.1f",powerDto.getMaxCapacity()/powerDto.getDesignCapacity()));

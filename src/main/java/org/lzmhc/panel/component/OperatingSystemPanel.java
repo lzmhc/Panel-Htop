@@ -1,15 +1,17 @@
 package org.lzmhc.panel.component;
 
+import lombok.extern.slf4j.Slf4j;
 import org.lzmhc.dto.OperatingSystemDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.OperatingSystemHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.software.os.OperatingSystem;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.CountDownLatch;
-
+@Slf4j
 public class OperatingSystemPanel extends JPanel implements GetPanel{
     protected OperatingSystem operatingSystem = InfoDtoSingleton.getInfoDto().getOperatingSystem();
     protected OperatingSystemDto operatingSystemDto= InfoFactory.createDto(OperatingSystemDto.class);
@@ -17,9 +19,9 @@ public class OperatingSystemPanel extends JPanel implements GetPanel{
     public JPanel getPanel(){
         ImageIcon icon = null;
         if(InfoDtoSingleton.getInfoDto().getOperatingSystem().getFamily().toLowerCase().equals("windows")){
-            icon = new ImageIcon("img/windows.png");
+            icon = IconUtil.loadIcon("img/windows.png", 54);
         }else{
-            icon = new ImageIcon("img/linux.png");
+            icon = IconUtil.loadIcon("img/linux.png", 54);
         }
         PanelItem item=new PanelItem("操作系统",new GridLayout(6,1), icon);
         CountDownLatch latch=new CountDownLatch(numThreads);

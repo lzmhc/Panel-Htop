@@ -4,6 +4,7 @@ import org.lzmhc.dto.StorageDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.StorageHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.hardware.HWDiskStore;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class StoragePanel extends JPanel implements GetPanel{
     protected StorageDto storageDto = InfoFactory.createDto(StorageDto.class);
     @Override
     public JPanel getPanel(){
-        ImageIcon icon=new ImageIcon("img/ssd.png");
+        ImageIcon icon= IconUtil.loadIcon("img/ssd.png", 54);
         PanelItem item = new PanelItem("磁盘",new GridLayout(6,1), icon);
         CountDownLatch latch=new CountDownLatch(numThreads);
         Thread thread=new StorageHandle(storageDto, diskStores,latch);

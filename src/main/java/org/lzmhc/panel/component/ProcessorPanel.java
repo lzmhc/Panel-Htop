@@ -6,6 +6,7 @@ import org.lzmhc.dto.ProcessorDto;
 import org.lzmhc.dto.factory.InfoFactory;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
 import org.lzmhc.handle.ProcessorHandle;
+import org.lzmhc.utils.IconUtil;
 import oshi.hardware.CentralProcessor;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class ProcessorPanel extends JPanel implements GetPanel{
     protected CentralProcessor processor = InfoDtoSingleton.getInfoDto().getHardware().getProcessor();
     protected ProcessorDto processorDto = InfoFactory.createDto(ProcessorDto.class);
     public JPanel getPanel(){
-        ImageIcon icon = new ImageIcon("img/cpu.png");
+        ImageIcon icon = IconUtil.loadIcon("img/cpu.png", 54);
         PanelItem item=new PanelItem("处理器",new GridLayout(7,1), icon);
         CountDownLatch latch = new CountDownLatch(numThreads);
         Thread thread = new ProcessorHandle(processorDto, processor,latch);

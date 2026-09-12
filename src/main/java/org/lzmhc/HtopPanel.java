@@ -3,11 +3,8 @@ package org.lzmhc;
 import javax.swing.*;
 
 import com.formdev.flatlaf.intellijthemes.FlatMaterialDesignDarkIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatSolarizedDarkIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialOceanicIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
+import com.formdev.flatlaf.util.SystemInfo;
 import org.lzmhc.dto.singleton.InfoDtoSingleton;
-import org.lzmhc.panel.component.PartitionPanel;
 import org.lzmhc.panel.generalPanel.PanelIndex;
 import org.lzmhc.panel.tab.*;
 import org.lzmhc.utils.FontUtil;
@@ -23,7 +20,6 @@ public class HtopPanel extends JFrame {
         initPanel();
     }
     public void initPanel(){
-        setTitle("简易的系统监视面板");
         setSize(1080,720);
         PanelIndex panel_index = new PanelIndex();
         JPanel panel_1 = new ProcessorTab("img/cpu.png");
@@ -47,9 +43,6 @@ public class HtopPanel extends JFrame {
         JPanel panel_4 = new OperatingSystemTab(OSlogo);
         JPanel panel_5 = new GraphicsTab( "img/graphics.png");
         JPanel panel_6 = new PowTab("img/pow.png");
-        /**
-         * 分区信息，玲珑版屏蔽
-         */
         JPanel panel_7 = new PartitionTab();
         JPanel panel_8 = new NetworkTab();
         JPanel panel_9 = new AboutTab();
@@ -66,11 +59,15 @@ public class HtopPanel extends JFrame {
         tabbedPane.addTab("关于",panel_9);
         add(tabbedPane);
         Toolkit tookit=Toolkit.getDefaultToolkit();
-        this.setIconImage(IconUtil.loadIcon(new ImageIcon("img/logo.png"), 512).getImage());
+        this.setIconImage(IconUtil.loadIcon("img/logo.png", 512).getImage());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
+        if ( SystemInfo.isLinux ) {
+            JFrame.setDefaultLookAndFeelDecorated( true );
+            JDialog.setDefaultLookAndFeelDecorated( true );
+        }
 //        FlatLaf.registerCustomDefaultsSource( "org.lzmhc.themes");
         Font sunfont= FontUtil.loadFont("font/sun.ttf", 20f);
         Font font= FontUtil.loadFont("font/AaBanRuoKaiShuJiaCu-2.ttf", 20f);
@@ -82,7 +79,8 @@ public class HtopPanel extends JFrame {
         UIManager.put("Label.foreground", Color.decode("#1fab89"));
         UIManager.put("TextField.foreground", Color.green);
         UIManager.put("TextComponent.arc", 10);
-        FlatSolarizedDarkIJTheme.setup();
+//        FlatSolarizedDarkIJTheme.setup();
+        FlatMaterialDesignDarkIJTheme.setup();
         JFrame htopPanel=new HtopPanel();
         htopPanel.setVisible(true);
 //        FlatMaterialDesignDarkIJTheme.install();
