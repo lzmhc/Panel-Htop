@@ -22,7 +22,3 @@
 ##### 更多工具
 
 - [MooInfo](https://github.com/rememberber/MooInfo)
-
-##### 注意事项
-
-> 在运行第一版jar包时，请将压缩包中的img和font目录放置在jar包同目录
